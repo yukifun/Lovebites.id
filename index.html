@@ -116,24 +116,27 @@
         <label for="name">Your Sweet Name 🍭</label>
         <input type="text" id="name" name="name" placeholder="E.g., Alice" required>
         
-        <label for="flavor">Pick a Flavor 🌈</label>
+        <label for="class">Your Class 🎓</label>
+        <input type="text" id="class" name="class" placeholder="E.g., 12A" required>
+        
+        <label for="flavor">Pick a Cookie Flavor 🌈</label>
         <select id="flavor" name="flavor" required>
             <option value="Matcha">Matcha</option>
             <option value="Red Velvet">Red Velvet</option>
             <option value="Original">Original</option>
         </select>
 
-        <label for="type">Pick Your Treat 🍪</label>
-        <select id="type" name="type" required>
-            <option value="Cookie Only (2 pcs) - 8k">Cookie Only (2 pcs) - 8k</option>
-            <option value="Ice Cream Cookie Sandwich - 15k">Ice Cream Cookie Sandwich - 15k</option>
+        <label for="icecream">Pick an Ice Cream Flavor 🍦</label>
+        <select id="icecream" name="icecream" required>
+            <option value="Chocolate">Chocolate</option>
+            <option value="Vanilla">Vanilla</option>
         </select>
-        
+
         <label for="quantity">How Many? 🛍️</label>
         <input type="number" id="quantity" name="quantity" min="1" placeholder="E.g., 3" required>
         
         <button type="button" onclick="sendOrder()">Place My Order!</button>
-        <div class="note">* Prices: Cookie Only - 8k | Ice Cream Sandwich - 15k</div>
+        <div class="note">* Price: Ice Cream Sandwich - 15k each</div>
         <div class="decor">💖 Thank you for choosing <span>Love Bites!</span> 💖</div>
         <div class="cookie">
             <img src="https://img.icons8.com/color/96/cookie.png" alt="Cookie">
@@ -146,18 +149,19 @@
         function sendOrder() {
             // Get form field values
             const name = document.getElementById('name').value.trim();
+            const classValue = document.getElementById('class').value.trim();
             const flavor = document.getElementById('flavor').value;
-            const type = document.getElementById('type').value;
+            const icecream = document.getElementById('icecream').value;
             const quantity = document.getElementById('quantity').value;
 
             // Validate inputs
-            if (!name || !flavor || !type || !quantity || quantity <= 0) {
+            if (!name || !classValue || !flavor || !icecream || !quantity || quantity <= 0) {
                 alert("Please fill in all fields correctly!");
                 return;
             }
 
             // Create WhatsApp message
-            const message = `🍪 *New Order from Love Bites!* 🍪\n\n👤 *Name*: ${name}\n🌈 *Flavor*: ${flavor}\n🍪 *Type*: ${type}\n📦 *Quantity*: ${quantity}\n\n💖 Thank you!`;
+            const message = `🍪 *New Order from Love Bites!* 🍪\n\n👤 *Name*: ${name}\n🎓 *Class*: ${classValue}\n🌈 *Cookie Flavor*: ${flavor}\n🍦 *Ice Cream Flavor*: ${icecream}\n📦 *Quantity*: ${quantity}\n\n💖 Thank you!`;
 
             // Encode message
             const encodedMessage = encodeURIComponent(message);
